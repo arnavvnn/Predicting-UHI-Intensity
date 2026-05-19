@@ -172,13 +172,14 @@ Normalised RMSE (RMSE / sigma_LST = 0.453) is the fairest cross-paper comparison
 
 ## References
 
-1. A. Mansouri & A. Erfani (2025). Machine Learning Prediction of Urban Heat Island Severity in the Midwestern United States. *Sustainability* 17(13), 6193.
-2. M. Aqdas et al. (2025). Urban Expansion and Thermal Stress: A Remote Sensing Analysis of LULC and Urban Heat Islands in Ghaziabad, India. *Land* 14(9), 1893.
-3. D. Lynda et al. (2025). Hybrid Bayesian Deep Learning Model for Predicting Urban Heat Island Intensity in African Cities. *Scientific Reports* 15, 31280.
-4. H. Deng et al. (2025). Integrating Model Variability, Scale Effect, and Zoning Effect to Analyze Uncertainties in Surface Urban Heat Island Prediction. *Sustainable Cities and Society* 130, 106588.
-5. N. D. Hoang & Q. L. Nguyen (2025). Geospatial Analysis and Machine Learning Framework for Urban Heat Island Intensity Prediction. *Sustainability* 17(10), 4287.
-6. M. B. Suthar (2025). Integrating Remote Sensing and Machine Learning for Predictive Analysis of Urban Heat Island Dynamics. *Environmental Reports* 3(1), 10.
-7. H. Manna et al. (2026). Urban Heating in Mumbai: From Scenario Analysis to the Mitigation of Nighttime Thermal Footprint. *Sustainable Cities and Society*.
-8. T. Kusumadewi et al. (2025). Synthesizing Environmental, Social, and Urban Density Metrics to Predict Urban Heat Island Dynamics using Remote Sensing and SVR. *ETASR*.
-9. Liu & Zhang (2011). Mean-SD UHI classification method.
-10. Meta Data for Good (2022). Relative Wealth Index.
+1. A. Mansouri & A. Erfani (2025). Machine Learning Prediction of Urban Heat Island Severity in the Midwestern United States. *Sustainability*, 17(13), 6193.
+2. N. D. Hoang & Q. L. Nguyen (2025). Geospatial Analysis and Machine Learning Framework for Urban Heat Island Intensity Prediction: Natural Gradient Boosting and Deep Neural Network Regressors with Multisource Remote Sensing Data. *Sustainability*, 17(10), 4287.
+3. D. Lynda, G. Logeswari, K. Tamilarasi & S. Rakesh (2025). Urban Heat Islands Predictive Model Using Bayesian Neural Networks. *Scientific Reports*, 15, 31280.
+4. H. Deng et al. (2025). Integrating Model Variability, Scale Effect, and Zoning Effect to Analyze Uncertainties in Surface Urban Heat Island Prediction. *Sustainable Cities and Society*, 130, 106588.
+5. M. Aqdas, T. M. Usmani, R. Benhizia & G. Szabo (2025). Urban Expansion and Thermal Stress: A Remote Sensing Analysis of LULC and Urban Heat Islands in Ghaziabad, India. *Land*, 14(9), 1893.
+6. T. Kusumadewi et al. (2025). Synthesizing Environmental, Social, and Urban Density Metrics to Predict Urban Heat Island Dynamics using Remote Sensing and Support Vector Regression. *Engineering, Technology and Applied Science Research (ETASR)*, 9791.
+7. H. Manna, M. Pramanik, R. Ahamed & S. Sarkar (2026). Urban Heating in Mumbai: From Scenario Analysis to the Mitigation of Nighttime Thermal Footprint. *Sustainable Cities and Society*.
+8. M. B. Suthar (2025). Integrating Remote Sensing and Machine Learning for Predictive Analysis of Urban Heat Island Dynamics. *Environmental Reports*, 3(1), 10.
+9. Tanoori et al. (2024). Urban Heat Island Analysis using XGBoost and Deep Neural Networks. *Shiraz, Iran case study*.
+10. Liu & Zhang (2011). Mean-SD classification method for urban heat island severity assessment.
+11. Meta Data for Good (2022). Relative Wealth Index for low- and middle-income countries.
