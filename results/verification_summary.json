@@ -1,0 +1,238 @@
+{
+  "regression_ensemble": {
+    "R2": 0.793994390800826,
+    "RMSE": 1.2329998062008138,
+    "MAE": 0.8873077711671323
+  },
+  "classification_ensemble": {
+    "accuracy": 0.7603781339909577,
+    "f1_weighted": 0.7598748770660761,
+    "auc": 0.8945928125190374,
+    "per_class_f1": [
+      0.788,
+      0.7682386134623136,
+      0.7263537906137184
+    ],
+    "confusion_matrix": [
+      [
+        394,
+        125,
+        7
+      ],
+      [
+        79,
+        953,
+        141
+      ],
+      [
+        1,
+        230,
+        503
+      ]
+    ]
+  },
+  "paper_baseline_regression": {
+    "R2": 0.5393840609675934,
+    "RMSE": 1.8433605234359465
+  },
+  "paper_baseline_classification": {
+    "accuracy": 0.6703661452919951,
+    "f1_weighted": 0.668994119196854
+  },
+  "mlp_regression_R2": 0.5066414924617877,
+  "cross_city": {
+    "naive_BLR_to_Pune": -1.3624022631648938,
+    "naive_Pune_to_BLR": -1.0104183780626466,
+    "std_BLR_to_Pune": 0.06807244415907465,
+    "std_Pune_to_BLR": 0.0700256040758338,
+    "combined_CV_R2": 0.7004597479539599,
+    "city_feature_importance": 0.09200388193130493
+  },
+  "ablation_baseline_R2": 0.793994390800826,
+  "ablation_results": {
+    "baseline": 0.793994390800826,
+    "NO2_Emissions (anthropogenic)": [
+      0.7748725103940532,
+      0.019121880406772762
+    ],
+    "Albedo (radiative balance)": [
+      0.7955065672417705,
+      -0.0015121764409444793
+    ],
+    "OSM 3D morphology": [
+      0.7945437696123162,
+      -0.0005493788114901976
+    ],
+    "OSM proximity (water/park/highway)": [
+      0.7715479704175652,
+      0.022446420383260834
+    ],
+    "Street_Density (OSM network)": [
+      0.7988326062836721,
+      -0.004838215482846131
+    ],
+    "Socioeconomic RWI": [
+      0.7736308103160278,
+      0.02036358048479825
+    ],
+    "ALL Indian-context novel features": [
+      0.6604684428425893,
+      0.1335259479582367
+    ]
+  },
+  "shap_top10": [
+    {
+      "feature": "NDBI",
+      "mean_abs_shap": 0.7240539789199829,
+      "pct_total": 20.53131866455078,
+      "type": "standard"
+    },
+    {
+      "feature": "Relative_Humidity",
+      "mean_abs_shap": 0.44901785254478455,
+      "pct_total": 12.732378959655762,
+      "type": "standard"
+    },
+    {
+      "feature": "Relative_Wealth_Index",
+      "mean_abs_shap": 0.4331130087375641,
+      "pct_total": 12.281379699707031,
+      "type": "NOVEL"
+    },
+    {
+      "feature": "NO2_Emissions",
+      "mean_abs_shap": 0.34004831314086914,
+      "pct_total": 9.642430305480957,
+      "type": "NOVEL"
+    },
+    {
+      "feature": "MODIS_LST",
+      "mean_abs_shap": 0.20490774512290955,
+      "pct_total": 5.8103766441345215,
+      "type": "standard"
+    },
+    {
+      "feature": "Soil_Moisture",
+      "mean_abs_shap": 0.19015134871006012,
+      "pct_total": 5.391943454742432,
+      "type": "standard"
+    },
+    {
+      "feature": "Dist_Water",
+      "mean_abs_shap": 0.18747888505458832,
+      "pct_total": 5.316163063049316,
+      "type": "NOVEL"
+    },
+    {
+      "feature": "Dist_Park",
+      "mean_abs_shap": 0.1439933031797409,
+      "pct_total": 4.083083152770996,
+      "type": "NOVEL"
+    },
+    {
+      "feature": "NDVI",
+      "mean_abs_shap": 0.13260653614997864,
+      "pct_total": 3.7601993083953857,
+      "type": "standard"
+    },
+    {
+      "feature": "Pop_Density",
+      "mean_abs_shap": 0.11495230346918106,
+      "pct_total": 3.259594678878784,
+      "type": "standard"
+    }
+  ],
+  "novel_features_total_shap_pct": 43.39661407470703,
+  "residual_diagnostics": {
+    "mean_bias": 0.00963877693157033,
+    "std": 1.233323859549445,
+    "mae": 0.887291977195007,
+    "median_abs_error": 0.6579211214695846,
+    "skewness": -0.6059931239845172,
+    "excess_kurtosis": 4.6233748977060065,
+    "std_over_mae": 1.3899864883804622
+  },
+  "within_city_cv": {
+    "blr_alone_18feat": {
+      "samples": 2433,
+      "r2_xgb_mean": 0.7649600942827015,
+      "r2_lgb_mean": 0.763043955842632,
+      "r2_cb_mean": 0.7640329374090596,
+      "r2_ensemble_mean": 0.7715509902278523,
+      "r2_ensemble_std": 0.010327409599043314,
+      "rmse_ensemble": 1.2984248529014122,
+      "mae_ensemble": 0.9282144044722471,
+      "fold_r2_ens": [
+        0.7811320841984816,
+        0.7790799357743777,
+        0.7550345460159953,
+        0.7787316739465899,
+        0.7637767112038168
+      ]
+    },
+    "pune_alone_18feat": {
+      "samples": 2382,
+      "r2_xgb_mean": 0.7096388095245589,
+      "r2_lgb_mean": 0.7020539048985551,
+      "r2_cb_mean": 0.7185084753256926,
+      "r2_ensemble_mean": 0.7178378397820776,
+      "r2_ensemble_std": 0.026106949536790127,
+      "rmse_ensemble": 0.5307013454862528,
+      "mae_ensemble": 0.4064036062440331,
+      "fold_r2_ens": [
+        0.6678188085446792,
+        0.7304062362752317,
+        0.7395925103461032,
+        0.7169809767522857,
+        0.7343906669920881
+      ]
+    },
+    "blr_alone_20feat_zscore": {
+      "r2_mean": 0.7933803644363617,
+      "r2_std": 0.008300375811377934,
+      "rmse": 0.45426610413042534,
+      "mae": 0.32697628630340814
+    },
+    "pune_alone_20feat_zscore": {
+      "r2_mean": 0.7194362015122493,
+      "r2_std": 0.02346185805010435,
+      "rmse": 0.5292136716639749,
+      "mae": 0.40524985656776025
+    }
+  },
+  "cross_city_20feat": {
+    "note": "All 20 BLR features used (NO2, Height_Var, Surface_Pressure now included). Both LST targets z-scored.",
+    "n_features": 20,
+    "within_blr": {
+      "r2_mean": 0.7933803644363617,
+      "r2_std": 0.008300375811377934,
+      "rmse": 0.45426610413042534,
+      "mae": 0.32697628630340814
+    },
+    "within_pune": {
+      "r2_mean": 0.7194362015122493,
+      "r2_std": 0.02346185805010435,
+      "rmse": 0.5292136716639749,
+      "mae": 0.40524985656776025
+    },
+    "naive_blr_to_pune": -0.24429805462898257,
+    "naive_pune_to_blr": -0.12316777139758117,
+    "std_blr_to_pune": 0.16619844632589065,
+    "std_pune_to_blr": 0.12725623858665136,
+    "combined_cv": {
+      "r2_mean": 0.7497123172182171,
+      "r2_std": 0.0157628887783356,
+      "rmse": 0.49937726727780607
+    },
+    "old_18feat": {
+      "blr_alone": 0.7716,
+      "pune_alone": 0.7178,
+      "naive_bp": -1.3624,
+      "naive_pb": -1.0104,
+      "std_bp": 0.0681,
+      "std_pb": 0.07,
+      "combined": 0.7005
+    }
+  },
+  "cross_city_20feat_note": "Corrected: all 20 BLR features are in Pune CSV. Old 18-feat COMMON was wrong - NO2, Height_Var, Surface_Pressure were available all along."
+}

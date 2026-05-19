@@ -1,0 +1,163 @@
+==============================================================================
+UHI BENGALURU — FULL EXPERIMENT VERIFICATION (Optuna skipped)
+Start: 2026-05-18 22:23:28
+==============================================================================
+
+--- LOADING DATA ---
+Bengaluru: (2433, 27)  |  Pune: (2382, 36)
+Bengaluru LST: mean=33.783 C  std=2.719 C
+
+3-class boundaries: 32.424 C  /  35.142 C
+Class counts: Cool=526, Neutral=1173, Hot=734
+
+Cleaned feature set: 20 features
+Features: ['NDBI', 'NDVI', 'NO2_Emissions', 'Pop_Density', 'Relative_Humidity', 'Wind_Speed', 'Building_Density_Ratio', 'Dist_Water', 'Dist_Park', 'Dist_Highway', 'Street_Density', 'Height_Variability', 'SVF_Proxy', 'Air_Temp_C', 'Albedo', 'MODIS_LST', 'Soil_Moisture', 'Surface_Pressure_hPa', 'Relative_Wealth_Index', 'Dist_to_RWI_Node']
+
+
+==============================================================================
+EXP 1 — Baseline models on cleaned 20-feature set (Stratified 5-fold)
+==============================================================================
+  Linear Regression               R2=0.4241  RMSE=2.0618  MAE=1.4894
+  KNN (k=7, distance)             R2=0.5985  RMSE=1.7213  MAE=1.2125
+  Random Forest (n=500,d=12)      R2=0.6943  RMSE=1.5009  MAE=1.0536
+
+
+==============================================================================
+EXP 2 — HEADLINE: Tuned 3-Model Ensemble (XGB+LGBM+CatBoost) — Cell 22
+==============================================================================
+  Fold 1: ENS R2=0.8004
+  Fold 2: ENS R2=0.8080
+  Fold 3: ENS R2=0.7797
+  Fold 4: ENS R2=0.7923
+  Fold 5: ENS R2=0.7895
+  XGB         R2=0.7869+/-0.0108  RMSE=1.2539  MAE=0.9038  MSE=1.5723
+  LGB         R2=0.7855+/-0.0135  RMSE=1.2580  MAE=0.9109  MSE=1.5826
+  CB          R2=0.7875+/-0.0094  RMSE=1.2522  MAE=0.8996  MSE=1.5679
+  Ensemble    R2=0.7940+/-0.0096  RMSE=1.2330  MAE=0.8873  MSE=1.5203
+
+
+==============================================================================
+EXP 3 — 3-CLASS CLASSIFICATION ENSEMBLE (Cell 10)
+==============================================================================
+  Fold 1: Acc=0.7454  F1w=0.7446
+  Fold 2: Acc=0.7474  F1w=0.7465
+  Fold 3: Acc=0.7639  F1w=0.7632
+  Fold 4: Acc=0.7737  F1w=0.7721
+  Fold 5: Acc=0.7716  F1w=0.7716
+
+  CUMULATIVE: Acc=0.7604  F1w=0.7599  AUC=0.8946
+  Per-class F1: Cool=0.7880  Neutral=0.7682  Hot=0.7264
+  Confusion matrix (rows=true, cols=pred):
+           Cool  Neutral  Hot
+    Cool       394      125     7
+    Neutral     79      953   141
+    Hot          1      230   503
+
+
+==============================================================================
+EXP 4 — PAPER BASELINE (Mansouri 6-feature schema)
+==============================================================================
+  Paper-RF (6-feat):    R2=0.5394  RMSE=1.8434  MAE=1.2648
+  Paper-XGB (6-feat):   R2=0.5161  RMSE=1.8892  MAE=1.3101
+  Paper-XGB (3-cls):    Acc=0.6704  F1w=0.6690  AUC=0.8110
+
+
+==============================================================================
+EXP 5 — MLP COMPARISON (2 hidden layers: 64,32 ReLU)
+==============================================================================
+  MLP-Reg:  R2=0.5066+/-0.0907  RMSE=1.9005  MAE=1.3450
+  MLP-Cls:  Acc=0.7008  F1w=0.6998  AUC=0.8375
+
+
+==============================================================================
+EXP 6 — CROSS-CITY TRANSFER (BLR <-> Pune)
+==============================================================================
+  Naive BLR->Pune: R2=-1.3624
+  Naive Pune->BLR: R2=-1.0104
+  Std BLR->Pune:   R2=0.0681
+  Std Pune->BLR:   R2=0.0700
+  Combined CV R2:  0.7005+/-0.0121
+  City feature importance: 0.092004
+
+
+==============================================================================
+EXP 7 — GROUP-WISE ABLATION ON TUNED ENSEMBLE (Cell 24)
+==============================================================================
+  Baseline ensemble (20 features): R2 = 0.7940
+
+  Removed group                                            R2        dR2   #feats
+  ----------------------------------------------------------------------------
+  NO2_Emissions (anthropogenic)                        0.7749    +0.0191       19
+  Albedo (radiative balance)                           0.7955    -0.0015       19
+  OSM 3D morphology                                    0.7945    -0.0005       17
+  OSM proximity (water/park/highway)                   0.7715    +0.0224       17
+  Street_Density (OSM network)                         0.7988    -0.0048       19
+  Socioeconomic RWI                                    0.7736    +0.0204       18
+  ALL Indian-context novel features                    0.6605    +0.1335        9
+
+
+==============================================================================
+EXP 8 — TREESHAP FEATURE IMPORTANCE (full data, tuned XGBoost)
+==============================================================================
+
+  Rank  Feature                       MeanAbsSHAP  PctTotal  Type
+     1  NDBI                              0.7241   20.53%  standard
+     2  Relative_Humidity                 0.4490   12.73%  standard
+     3  Relative_Wealth_Index             0.4331   12.28%  NOVEL
+     4  NO2_Emissions                     0.3400    9.64%  NOVEL
+     5  MODIS_LST                         0.2049    5.81%  standard
+     6  Soil_Moisture                     0.1902    5.39%  standard
+     7  Dist_Water                        0.1875    5.32%  NOVEL
+     8  Dist_Park                         0.1440    4.08%  NOVEL
+     9  NDVI                              0.1326    3.76%  standard
+    10  Pop_Density                       0.1150    3.26%  standard
+
+  Novel features total SHAP attribution: 43.40%
+  Saved: shap_bar.png
+  Saved: shap_beeswarm.png
+
+
+==============================================================================
+EXP 9 — RESIDUAL & STATISTICAL ANALYSIS (ensemble OOF predictions)
+==============================================================================
+  Mean bias:        +0.0096 C  (essentially unbiased)
+  Std of residuals: 1.2333 C
+  MAE:              0.8873 C
+  Median abs error: 0.6579 C
+  std/MAE ratio:    1.3900  (Gaussian = 1.253)
+  Skewness:         -0.6060
+  Excess kurtosis:  +4.6234
+  Shapiro-Wilk:     stat=0.9479  p=1.50e-28
+  Jarque-Bera:      stat=2315.8618  p=0.00e+00
+  K-S vs Normal:    stat=0.0658  p=1.32e-09
+
+  Percentile analysis of |residual| (empirical vs Gaussian):
+     25th: empirical=0.322 C  |  Gaussian-equiv=0.393 C  |  TIGHTER
+     50th: empirical=0.658 C  |  Gaussian-equiv=0.832 C  |  TIGHTER
+     75th: empirical=1.202 C  |  Gaussian-equiv=1.419 C  |  TIGHTER
+     90th: empirical=1.855 C  |  Gaussian-equiv=2.029 C  |  TIGHTER
+     95th: empirical=2.392 C  |  Gaussian-equiv=2.417 C  |  TIGHTER
+     99th: empirical=4.364 C  |  Gaussian-equiv=3.177 C  |  HEAVIER
+  Saved: residual_analysis.png
+
+
+==============================================================================
+FINAL HEADLINE SUMMARY
+==============================================================================
+
+[REGRESSION] Tuned 3-model Ensemble (20 features, Stratified 5-fold):
+   R2 = 0.7940  |  RMSE = 1.2330 C  |  MAE = 0.8873 C
+
+[CLASSIFICATION] 3-class Ensemble (Stratified 5-fold):
+   Accuracy = 0.7604  |  F1-weighted = 0.7599  |  AUC = 0.8946
+
+[ABLATION] Drop ALL novel features:  R2 falls from 0.7940 -> 0.6605  (dR2 = +0.1335)
+
+[SHAP] Novel-features total attribution: 43.40%
+
+[CROSS-CITY] Naive transfer: -1.3624  -->  Standardized: +0.0681  -->  Combined CV: 0.7005  |  City FI: 0.092004
+
+[MLP] R2 = 0.5066  (vs ensemble 0.7940)
+
+Total runtime: 3.8 min
+Saved verification_summary.json + verification_results.txt

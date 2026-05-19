@@ -1,0 +1,28 @@
+# macOS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# CatBoost training logs
+catboost_info/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Heavy local-only files
+DOCX Files/
+archive/
+HANDOFF.md
+
+# Large or draft PPTX files — keep only the final one
+*.pptx
+!MLPR_UHI_Bengaluru_Final_Presentation.pptx
+
+# Verbose log (results summary JSON/TXT are kept)
+results/verify_stdout.log
+
+# Temp files
+~$*
+Untitled document.docx
